@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className="justify-around py-3 items-center hidden sm:flex bg-slate-900 text-white"
+        className="justify-around py-3 items-center hidden sm:flex bg-black text-white shadow-md"
         onClick={toggleAnywhere}
       >
         <NavLink to={"/"} className={style}>
