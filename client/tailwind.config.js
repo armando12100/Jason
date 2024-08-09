@@ -9,6 +9,11 @@ export default {
       'sm': '390px',
       // => @media (min-width: 576px) { ... }
     },
+    extend: {
+      colors: {
+        'brown': '#210002'
+      }
+    }
   },
   plugins: [],
 }
