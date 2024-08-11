@@ -19,9 +19,9 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="bg-brown">
+      {/* <div className="bg-brown">
         <h1>Placeholder Text</h1>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -42,7 +42,7 @@ const Navbar = () => {
           <NavLink to={"/portfolio"} className={style}>
             Hikes
           </NavLink>
-          <NavLink to={"/motion"} className={style}>
+          <NavLink to={"/parks"} className={style}>
             National Parks
           </NavLink>
           <NavLink to={"/store"} className={style}>
