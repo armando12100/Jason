@@ -14,7 +14,7 @@ const StateCard = (props) => {
             src={props.img}
             alt=""
             width={350}
-            className="object-cover h-72 rounded-lg"
+            className="object-cover h-52 rounded-lg"
           />
         </div>
         <div className="flex flex-col justify-center">
