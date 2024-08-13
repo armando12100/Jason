@@ -45,8 +45,8 @@ const Navbar = () => {
           <NavLink to={"/parks"} className={style}>
             National Parks
           </NavLink>
-          <NavLink to={"/store"} className={style}>
-            Store
+          <NavLink to={"/myparks"} className={style}>
+            My Parks
           </NavLink>
           <NavLink to={"/about"} className={style}>
             Account
@@ -79,8 +79,8 @@ const Navbar = () => {
           <NavLink to={"/tab"} className={style} onClick={toggleAnywhere}>
             Tab
           </NavLink>
-          <NavLink to={"/services"} className={style} onClick={toggleAnywhere}>
-            Services
+          <NavLink to={"/myparks"} className={style} onClick={toggleAnywhere}>
+            My Parks
           </NavLink>
           <NavLink to={"/contact"} className={style} onClick={toggleAnywhere}>
             Contact
