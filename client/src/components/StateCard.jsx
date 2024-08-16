@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+// import { useState } from "react";
 
 const StateCard = (props) => {
+
   return (
     <>
       <div className="justify-center my-3 w-96 shadow-2xl rounded-lg mt-6 lg:mt-0 mx-4 cursor-pointer pb-6">
@@ -24,10 +26,11 @@ const StateCard = (props) => {
             </p>
           </div>
           <div className="flex justify-center items-center">
-            <Link to={"/contact"}>
+            <Link to={`/parks/${props.state}`}>
               <button
                 className="bg-zinc-400 font-bold text-white px-5 py-3 my-2 rounded-md
              hover:bg-transparent cursor-pointer hover:text-black transition border-2 hover:border-zinc-400 duration-200"
+                // onClick={GetInfo}s
               >
                 Get Park Info!
               </button>
@@ -40,10 +43,9 @@ const StateCard = (props) => {
 };
 
 StateCard.propTypes = {
-    img: PropTypes.any,
-    state: PropTypes.string,
-    numParks: PropTypes.number
-  };
-  
+  img: PropTypes.any,
+  state: PropTypes.string,
+  numParks: PropTypes.number,
+};
 
 export default StateCard;

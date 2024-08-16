@@ -1,5 +1,5 @@
 import StateCard from "../components/StateCard";
-import ParksByStateData from "../data/ParksByStateData";
+import ParksByStateData from "../data/ParksByStateData"
 
 
 const NationalParks = () => {
@@ -13,7 +13,7 @@ const NationalParks = () => {
         img={parks.img}
       />
     );
-  });
+  })
 
   return (
     <div className="flex h-screen flex-col">

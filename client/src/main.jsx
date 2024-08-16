@@ -8,6 +8,7 @@ import Parks from './pages/Parks.jsx';
 import MyParks from './pages/MyParks.jsx'
 import About from './pages/About.jsx'
 import NationalParks from './pages/NationalParks.jsx';
+import SingleParkInfo from './pages/SingleParkInfo.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path="/parks" element={<NationalParks />} />
       <Route path="/myparks" element={<MyParks />} />
       <Route path="/about" element={<About />} />
+      <Route path='/parks/:state' element={<SingleParkInfo />} />
     </Routes>
   </BrowserRouter>,
 )
