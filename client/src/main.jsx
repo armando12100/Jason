@@ -10,6 +10,7 @@ import About from './pages/About.jsx'
 import NationalParks from './pages/NationalParks.jsx';
 import SingleParkInfo from './pages/SingleParkInfo.jsx';
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Navbar />

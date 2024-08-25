@@ -1,7 +1,6 @@
 import StateCard from "../components/StateCard";
 import ParksByStateData from "../data/ParksByStateData"
 
-
 const NationalParks = () => {
 
   const cards = ParksByStateData.map((parks) => {

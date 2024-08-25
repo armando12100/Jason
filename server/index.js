@@ -25,8 +25,8 @@ app.get("/", (req, res) => {
 });
 
 // get request that gets all parks
-app.get("/parks", (req,res) => {
-    const q = "SELECT * FROM parks"
+app.get("/parks/Alaska", (req,res) => {
+    const q = `SELECT * FROM parks WHERE state = "Alaska"`
     db.query(q, (err,data) => {
         if (err) return res.json(err)
         return res.json(data)
