@@ -19,7 +19,7 @@ const SingleParkInfo = () => {
         }
     };
     fetchAllParks();
-  }, );
+  },[params.state] );
 
   return (
     <div className="flex h-screen flex-col">
