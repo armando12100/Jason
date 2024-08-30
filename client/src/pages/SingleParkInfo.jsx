@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SingleParkCard from "../components/SingleParkCard"
 
 const SingleParkInfo = () => {
   const params = useParams();
@@ -21,6 +22,13 @@ const SingleParkInfo = () => {
     fetchAllParks();
   },[params.state] );
 
+  const parkCards = parks.map((parks) => {
+    return (
+      <SingleParkCard key={parks.id} state={parks.park_name} 
+      location={parks.location} img={parks.img} />
+    );
+  });
+
   return (
     <div className="flex h-screen flex-col">
       <h1 className="text-2xl font-bold text-black pt-4 border-b-2 border-gray-500 pl-3 pb-4">
@@ -30,15 +38,7 @@ const SingleParkInfo = () => {
         Our National Parks Include
       </h3>
       <div className="flex flex-wrap justify-center items-center pt-10">
-        {parks.map((park) => (
-          <div key={park.id}>
-            <h1 className="font-bold pr-4">{park.park_name}</h1>
-            <div>
-              <img src={park.img} alt="" width={350}
-            className="object-cover h-52 rounded-lg"/>
-            </div>
-          </div>
-        ))}
+        {parkCards}
       </div>
     </div>
   );
