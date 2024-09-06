@@ -27,7 +27,6 @@ app.get("/", (req, res) => {
 // get request that gets all parks
 app.get("/parks/:state", (req,res) => {
     const state = req.params.state;
-    console.log(state);
     const q = `SELECT * FROM parks WHERE state = ?`
     db.query(q, [state], (err,data) => {
         if (err) return id
