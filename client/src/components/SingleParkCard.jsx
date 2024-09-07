@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 
 const SingleParkCard = (props) => {
   return (
+<<<<<<< HEAD
     <div>
+=======
+    <>
+>>>>>>> d4925aacea75aee7a3a31818ec9f8bfa656271ed
       <div className="justify-center my-3 w-96 shadow-2xl rounded-lg mt-6 lg:mt-0 mx-4 
       cursor-pointer pb-6 border-dashed border-2 border-brown">
         <div
@@ -41,6 +45,10 @@ const SingleParkCard = (props) => {
 SingleParkCard.propTypes = {
   park: PropTypes.string,
   img: PropTypes.any,
+<<<<<<< HEAD
   state: PropTypes.string,
+=======
+  state: PropTypes.string
+>>>>>>> d4925aacea75aee7a3a31818ec9f8bfa656271ed
 };
 export default SingleParkCard
