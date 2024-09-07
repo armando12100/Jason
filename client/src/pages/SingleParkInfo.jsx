@@ -11,7 +11,7 @@ const SingleParkInfo = () => {
   const [parks, setParks] = useState([]);
 
   useEffect(() => {
-    const fetchAllParks = async () => {
+    const fetchPark = async () => {
         try {
           const res = await axios.get(`http://localhost:3000/parks/${params.state.toString()}`);
           setParks(res.data);
@@ -19,26 +19,16 @@ const SingleParkInfo = () => {
           console.log(error);
         }
     };
-    fetchAllParks();
+    fetchPark();
   },[params.state] );
 
   const parkCards = parks.map((parks) => {
     return (
-<<<<<<< HEAD
-<<<<<<< HEAD
       <div key={parks.park_id}>
         <SingleParkCard key={parks.park_id} park={parks.park_name} 
       img={parks.park_img} state={parks.state} />
       </div>
-=======
-      <SingleParkCard key={parks.id} park={parks.park_name} 
-      img={parks.park_img} state={parks.state} />
->>>>>>> d4925aacea75aee7a3a31818ec9f8bfa656271ed
-=======
-      <SingleParkCard key={parks.id} state={parks.park_name} 
-      location={parks.location} img={parks.park_img} />
->>>>>>> parent of dd39185 (GET request for single park info added)
-    );
+    )
   });
 
   return (
