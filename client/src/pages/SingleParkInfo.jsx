@@ -5,6 +5,8 @@ import SingleParkCard from "../components/SingleParkCard"
 
 const SingleParkInfo = () => {
   const params = useParams();
+
+  console.log(params.state);
   
   const [parks, setParks] = useState([]);
 
@@ -23,6 +25,7 @@ const SingleParkInfo = () => {
   const parkCards = parks.map((parks) => {
     return (
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div key={parks.park_id}>
         <SingleParkCard key={parks.park_id} park={parks.park_name} 
       img={parks.park_img} state={parks.state} />
@@ -31,6 +34,10 @@ const SingleParkInfo = () => {
       <SingleParkCard key={parks.id} park={parks.park_name} 
       img={parks.park_img} state={parks.state} />
 >>>>>>> d4925aacea75aee7a3a31818ec9f8bfa656271ed
+=======
+      <SingleParkCard key={parks.id} state={parks.park_name} 
+      location={parks.location} img={parks.park_img} />
+>>>>>>> parent of dd39185 (GET request for single park info added)
     );
   });
 

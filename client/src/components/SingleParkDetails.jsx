@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import PropTypes from "prop-types";
 
 const SingleParkDetails = (props) => {
@@ -8,6 +7,7 @@ const SingleParkDetails = (props) => {
       <div>
         <p>{props.description}</p>
         <p>{props.directions}</p>
+        <p>{props.state}</p>
       </div>
     </div>
   )
@@ -21,13 +21,4 @@ SingleParkDetails.propTypes = {
   directions: PropTypes.string
 };
 
-=======
-
-const SingleParkDetails = () => {
-  return (
-    <div>SingleParkDetails</div>
-  )
-}
-
->>>>>>> d4925aacea75aee7a3a31818ec9f8bfa656271ed
 export default SingleParkDetails

@@ -27,21 +27,10 @@ app.get("/", (req, res) => {
 // get request that gets all parks
 app.get("/parks/:state", (req,res) => {
     const state = req.params.state;
+    console.log(state);
     const q = `SELECT * FROM parks WHERE state = ?`
     db.query(q, [state], (err,data) => {
-        if (err) return res.json(err)
-        return res.json(data)
-    })
-});
-
-// get request that gets single park
-app.get("/parks/:state/:park", (req,res) => {
-    const state = req.params.state;
-    const park = req.params.park;
-    console.log("hi")
-    const q = `SELECT * FROM parks WHERE park_name = ?`
-    db.query(q, [park], (err,data) => {
-        if (err) return res.json(err)
+        if (err) return id
         return res.json(data)
     })
 });
