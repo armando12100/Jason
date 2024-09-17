@@ -1,17 +1,11 @@
 import express from "express"
-import mysql from "mysql"
 import cors from 'cors';
+import parks from "./routes/parks.js"
+import auth from "./routes/auth.js"
 
 const app = express();
 
 const PORT = 3000;
-
-const db = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"password",
-    database:"nationalparks"
-});
 
  // allows me to post via postman
  app.use(express.json());
@@ -19,47 +13,15 @@ const db = mysql.createConnection({
   // connects frontend with backend
   app.use(cors());
 
+  app.use("/parks", parks);
+
+  app.use("/auth", auth);
+
  // get request for homepage
 app.get("/", (req, res) => {
     res.json("Hello from the backend!")
 });
 
-// get request that gets all parks
-app.get("/parks/:state", (req,res) => {
-    const state = req.params.state;
-    const q = `SELECT * FROM parks WHERE state = ?`
-    db.query(q, [state], (err,data) => {
-        if (err) return id
-        return res.json(data)
-    })
-});
-
-// get request for single park
-
-app.get("/parks/:state/:park", (req,res) => {
-    const park = req.params.park;
-    const q = `SELECT * FROM parks WHERE park_name = ?`
-    db.query(q, [park], (err,data) => {
-        if (err) return res.json(err)
-        return res.json(data)
-    })
-});
-
-
-app.post("/parks", (req, res) => {
-    const q = "INSERT INTO parks (`state`, `park_name`, `park_id`) VALUES (?)"
-    const values = [
-        req.body.state,
-        req.body.park_name,
-        req.body.park_id,
-    ]
-
-    db.query(q,[values], (err, data) => {
-        if (err) return res.json(err);
-        return res.json("Park has been successfully created!");
-    });
- });
-
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Connect to port 3000!")
 })

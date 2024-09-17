@@ -10,7 +10,7 @@ const SingleParkCard = (props) => {
         className="flex flex-col justify-center items-center
             hover:scale-105 transition duration-200 pt-2"
       >
-        <h1 className="text-center font-bold pb-4">{props.state}</h1>
+        <h1 className="text-center font-bold pb-4">{props.park}</h1>
         <img
           src={props.img}
           alt=""
