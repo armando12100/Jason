@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
 
 const Register = () => {
+
     const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
@@ -13,6 +15,8 @@ const Register = () => {
   });
 
   const [err, setError] = useState(null);
+
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -31,9 +35,8 @@ const Register = () => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log("working");
     try {
-      await axios.post("http://localhost:3000/auth/login", inputs);
+      await login(inputs)
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -80,7 +83,7 @@ const Register = () => {
               </button>
               {err && (
                 <p className="text-red-600 mb-4">
-                  {err} <span>Login Instead</span>
+                  {err}
                 </p>
               )}
             </div>

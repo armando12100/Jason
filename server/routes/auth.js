@@ -18,7 +18,7 @@ router.post("/register", (req, res) => {
 
     db.query(q, [req.body.user_email, req.body.name], (err, data) => {
         if (err) return res.json(err);
-        if (data.length) return res.status(409).json("User already exists!");
+        if (data.length) return res.status(409).json("Email already used! Login instead!");
         
         //Hash the password & create a user
         const salt = bcrypt.genSaltSync(10);
@@ -39,7 +39,7 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
     // Check user
-    const q = "SELECT * FROM users where email = ?";
+    const q = "SELECT * FROM users where user_email = ?";
 
     db.query(q, [req.body.user_email], (err, data) => {
         if (err) return res.json(err);
@@ -48,7 +48,7 @@ router.post("/login", (req, res) => {
         // Check password
         const isPasswordCorrect = bcrypt.compareSync(req.body.user_password, data[0].user_password);
 
-        if (!isPasswordCorrect) return res.status(400).json("Wrong username or password!");
+        if (!isPasswordCorrect) return res.status(400).json("Username or Password is incorrect!");
 
         const token = jwt.sign({user_id:data[0].user_id}, "jwtkey");
         const {user_password, ...other} = data[0]
