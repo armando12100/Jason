@@ -1,6 +1,7 @@
 import express from "express";
 import mysql from "mysql";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 var router = express.Router();
 
@@ -31,8 +32,30 @@ router.post("/register", (req, res) => {
 
         db.query(q, [values], (err, data) => {
             if (err) return res.json(err);
-            return res.status(200).json("User successfully created!")
+            return res.status(200).json("User successfully created!");
         });
+    });
+});
+
+router.post("/login", (req, res) => {
+    // Check user
+    const q = "SELECT * FROM users where email = ?";
+
+    db.query(q, [req.body.user_email], (err, data) => {
+        if (err) return res.json(err);
+        if (data.length === 0 ) return res.status(404).json("User not found!");
+
+        // Check password
+        const isPasswordCorrect = bcrypt.compareSync(req.body.user_password, data[0].user_password);
+
+        if (!isPasswordCorrect) return res.status(400).json("Wrong username or password!");
+
+        const token = jwt.sign({user_id:data[0].user_id}, "jwtkey");
+        const {user_password, ...other} = data[0]
+
+        res.cookie("access_token", token, {
+            httpOnly: true
+        }).status(200).json(other)
     });
 });
 
