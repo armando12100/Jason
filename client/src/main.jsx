@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar.jsx";
 import Tab from "./pages/Tab.jsx";
 import Parks from "./pages/Parks.jsx";
 import MyParks from "./pages/MyParks.jsx";
-import About from "./pages/About.jsx";
+import Account from "./pages/Account.jsx";
 import NationalParks from "./pages/NationalParks.jsx";
 import SingleParkInfo from "./pages/SingleParkInfo.jsx";
 import SingleParkPage from "./pages/SingleParkPage.jsx";
@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/parkss" element={<Parks />} />
         <Route path="/parks" element={<NationalParks />} />
         <Route path="/myparks" element={<MyParks />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/account" element={<Account />} />
         <Route path="/parks/:state" element={<SingleParkInfo />} />
         <Route path="/parks/:state/:park" element={<SingleParkPage />} />
         <Route path="/register" element={<Register />} />

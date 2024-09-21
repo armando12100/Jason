@@ -63,7 +63,7 @@ router.get("/login", (req, res) => {
     res.json("Hello from the login page!")
 });
 
-router.get("/logout", (req, res) => {
+router.post("/logout", (req, res) => {
     res.json("Hello from the logout page!")
 })
 

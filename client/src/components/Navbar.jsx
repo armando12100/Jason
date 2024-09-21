@@ -4,6 +4,7 @@ import Hamburger from "../images/hamburger.png";
 import logo from "../images/logo.jpg";
 
 const Navbar = () => {
+
   const style = ({ isActive }) =>
     [
       "ml-10 px-2 py-2.5",
@@ -48,7 +49,7 @@ const Navbar = () => {
           <NavLink to={"/myparks"} className={style}>
             My Parks
           </NavLink>
-          <NavLink to={"/about"} className={style}>
+          <NavLink to={"/account"} className={style}>
             Account
           </NavLink>
         </div>
@@ -73,8 +74,8 @@ const Navbar = () => {
           <NavLink to={"/"} className={style} onClick={toggleAnywhere}>
             Home
           </NavLink>
-          <NavLink to={"/tab"} className={style} onClick={toggleAnywhere}>
-            Tab
+          <NavLink to={"/account"} className={style} onClick={toggleAnywhere}>
+            Account
           </NavLink>
           <NavLink to={"/tab"} className={style} onClick={toggleAnywhere}>
             Tab
