@@ -11,10 +11,13 @@ const db = mysql.createConnection({
 });
 
 // get request that gets all bookmarked parks
-router.get("/", (req,res) => {
-    const q = "SELECT * FROM nationalparks.parks INNER JOIN nationalparks.bookmarks ON parks.park_id = bookmarks.park_id"
+router.get("/:id", (req,res) => {
+    const q = "SELECT * FROM nationalparks.parks INNER JOIN nationalparks.bookmarks ON parks.park_id = bookmarks.park_id AND bookmarks.user_id = ?"
+    
+    const id = req.params.id
+    console.log(id);
 
-    db.query(q, (err,data) => {
+    db.query(q, [id], (err,data) => {
         if (err) return (err)
         return res.json(data)
     })

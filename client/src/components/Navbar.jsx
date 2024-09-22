@@ -2,8 +2,12 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Hamburger from "../images/hamburger.png";
 import logo from "../images/logo.jpg";
+import { useParams } from "react-router-dom";
 
 const Navbar = () => {
+
+  const params = useParams();
+  console.log(params);
 
   const style = ({ isActive }) =>
     [
@@ -46,7 +50,7 @@ const Navbar = () => {
           <NavLink to={"/parks"} className={style}>
             National Parks
           </NavLink>
-          <NavLink to={"/myparks"} className={style}>
+          <NavLink to={`/myparks/${params.id}`} className={style}>
             My Parks
           </NavLink>
           <NavLink to={"/account"} className={style}>

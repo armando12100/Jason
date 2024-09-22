@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/tab" element={<Tab />} />
         <Route path="/parkss" element={<Parks />} />
         <Route path="/parks" element={<NationalParks />} />
-        <Route path="/myparks" element={<MyParks />} />
+        <Route path="/myparks/:id" element={<MyParks />} />
         <Route path="/account" element={<Account />} />
         <Route path="/parks/:state" element={<SingleParkInfo />} />
         <Route path="/parks/:state/:park" element={<SingleParkPage />} />

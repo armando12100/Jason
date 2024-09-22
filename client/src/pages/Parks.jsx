@@ -4,7 +4,6 @@ import NationalParksData from "../data/NationalParksData";
 const Parks = () => {
 
   const Alaska = NationalParksData[0].Alaska
-  console.log(Alaska)
 
   const cards = Alaska.map((parks) => {
     return (

@@ -1,14 +1,19 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import SingleParkCard from "../components/SingleParkCard";
+import { AuthContext } from "../context/authContext";
+
 
 const MyParks = () => {
+
   const [parks, setParks] = useState([]);
+
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchPark = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/bookmarks`);
+        const res = await axios.get(`http://localhost:3000/bookmarks/${currentUser.user_id}`);
         setParks(res.data);
       } catch (error) {
         console.log(error);

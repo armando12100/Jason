@@ -6,7 +6,7 @@ import SingleParkCard from "../components/SingleParkCard";
 const SingleParkInfo = () => {
   const params = useParams();
 
-  console.log(params.state);
+  console.log(params);
   
   const [parks, setParks] = useState([]);
 
