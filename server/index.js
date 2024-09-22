@@ -1,7 +1,8 @@
-import express from "express"
+import express from "express";
 import cors from 'cors';
-import parks from "./routes/parks.js"
-import auth from "./routes/auth.js"
+import parks from "./routes/parks.js";
+import auth from "./routes/auth.js";
+import bookmarks from "./routes/bookmarks.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -18,6 +19,8 @@ const PORT = 3000;
   app.use("/parks", parks);
 
   app.use("/auth", auth);
+
+  app.use("/bookmarks", bookmarks);
 
  // get request for homepage
 app.get("/", (req, res) => {

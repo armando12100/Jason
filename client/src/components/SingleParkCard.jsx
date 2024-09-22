@@ -1,6 +1,23 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
+import { useContext } from "react";
+import axios from "axios";
+
 const SingleParkCard = (props) => {
+
+  const { currentUser } = useContext(AuthContext);
+  const [bookmark, SetBookmark] = useState(false);
+
+  const BookmarkPage = () => {
+    if (currentUser) {
+      alert("logged in and can bookmark!")
+    } else {
+      alert("not logged in and cannot bookmark!")
+    }
+  };
+
   return (
     <div
       className="justify-center my-3 w-96 shadow-2xl rounded-lg mt-6 lg:mt-0 mx-4 
@@ -29,6 +46,14 @@ const SingleParkCard = (props) => {
               Get Park Info!
             </button>
           </Link>
+          <button
+            className="hover:bg-orange-300 font-bold hover:text-black px-5 py-3 my-2 
+          rounded-md bg-yellow-600 cursor-pointer text-orange-300 
+          transition border-2 border-brown duration-200 ml-4"
+          onClick={BookmarkPage}
+          >
+            Bookmark
+          </button>
         </div>
       </div>
     </div>

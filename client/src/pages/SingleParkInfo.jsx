@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import SingleParkCard from "../components/SingleParkCard"
+import SingleParkCard from "../components/SingleParkCard";
 
 const SingleParkInfo = () => {
   const params = useParams();
