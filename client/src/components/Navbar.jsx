@@ -1,13 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Hamburger from "../images/hamburger.png";
 import logo from "../images/logo.jpg";
-import { useParams } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
 
 const Navbar = () => {
 
-  const params = useParams();
-  console.log(params);
+  const { currentUser } = useContext(AuthContext);
 
   const style = ({ isActive }) =>
     [
@@ -50,7 +49,7 @@ const Navbar = () => {
           <NavLink to={"/parks"} className={style}>
             National Parks
           </NavLink>
-          <NavLink to={`/myparks/${params.id}`} className={style}>
+          <NavLink to={currentUser ? `/myparks/${currentUser.user_id}` : "/mypakrs"} className={style}>
             My Parks
           </NavLink>
           <NavLink to={"/account"} className={style}>

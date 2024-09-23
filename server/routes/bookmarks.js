@@ -26,9 +26,10 @@ router.get("/:id", (req,res) => {
 // post to bookmarks table
 router.post("/", (req, res) => {
     const q = "INSERT INTO bookmarks (`user_id`, `park_id`) VALUES (?)"
+    
     const values = [
+        req.body.user_id,
         req.body.park_id,
-        req.body.user_id
     ]
 
     db.query(q,[values], (err, data) => {

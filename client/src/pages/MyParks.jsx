@@ -20,7 +20,7 @@ const MyParks = () => {
       }
     };
     fetchPark();
-  }, []);
+  }, [currentUser.user_id]);
 
   const parkCards = parks.map((parks) => {
     return (

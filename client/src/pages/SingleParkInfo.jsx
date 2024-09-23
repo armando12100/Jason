@@ -25,7 +25,7 @@ const SingleParkInfo = () => {
   const parkCards = parks.map((parks) => {
     return (
       <div key={parks.park_id}>
-        <SingleParkCard key={parks.park_id} park={parks.park_name} 
+        <SingleParkCard id={parks.park_id} park={parks.park_name} 
       img={parks.park_img} state={parks.state} />
       </div>
     )

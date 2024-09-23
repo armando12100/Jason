@@ -1,22 +1,36 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 
 const SingleParkCard = (props) => {
 
   const { currentUser } = useContext(AuthContext);
-  const [bookmark, SetBookmark] = useState(false);
 
-  const BookmarkPage = () => {
-    if (currentUser) {
-      alert("logged in and can bookmark!")
-    } else {
-      alert("not logged in and cannot bookmark!")
+  const [bookmark, SetBookmark] = useState({
+    user_id: currentUser.user_id,
+    park_id: props.id
+  })
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    try {
+      await axios.post("http://localhost:3000/bookmarks", bookmark)
+      console.log("worked hehe")
+    } catch (error) {
+      console.log(error)
     }
-  };
+  }
+
+  // const BookmarkPage = () => {
+  //   if (currentUser) {
+  //     console.log(props.id)
+  //     console.log(currentUser.user_id)
+  //   } else {
+  //     alert("not logged in and cannot bookmark!")
+  //   }
+  // };
 
   return (
     <div
@@ -50,7 +64,7 @@ const SingleParkCard = (props) => {
             className="hover:bg-orange-300 font-bold hover:text-black px-5 py-3 my-2 
           rounded-md bg-yellow-600 cursor-pointer text-orange-300 
           transition border-2 border-brown duration-200 ml-4"
-          onClick={BookmarkPage}
+          onClick={handleSubmit}
           >
             Bookmark
           </button>
@@ -64,5 +78,6 @@ SingleParkCard.propTypes = {
   state: PropTypes.string,
   park: PropTypes.string,
   img: PropTypes.any,
+  id: PropTypes.number
 };
 export default SingleParkCard;
