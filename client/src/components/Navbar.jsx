@@ -49,7 +49,7 @@ const Navbar = () => {
           <NavLink to={"/parks"} className={style}>
             National Parks
           </NavLink>
-          <NavLink to={currentUser ? `/myparks/${currentUser.user_id}` : "/mypakrs"} className={style}>
+          <NavLink to={currentUser ? `/myparks/${currentUser.user_id}` : "/myparks"} className={style}>
             My Parks
           </NavLink>
           <NavLink to={"/account"} className={style}>

@@ -1,36 +1,42 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SingleParkCard = (props) => {
-
   const { currentUser } = useContext(AuthContext);
 
   const [bookmark, SetBookmark] = useState({
-    user_id: currentUser.user_id,
-    park_id: props.id
-  })
+    user_id: null,
+    park_id: null,
+  });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      SetBookmark({
+        ...bookmark,
+        user_id: currentUser.user_id,
+        park_id: props.id,
+      });
+    } else {
+      alert("not logged in!");
+    }
+  }, [bookmark]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/bookmarks", bookmark)
-      console.log("worked hehe")
+      await axios.post("http://localhost:3000/bookmarks", bookmark);
+      console.log(bookmark);
+      navigate(`/parks/${props.state}`);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
-  // const BookmarkPage = () => {
-  //   if (currentUser) {
-  //     console.log(props.id)
-  //     console.log(currentUser.user_id)
-  //   } else {
-  //     alert("not logged in and cannot bookmark!")
-  //   }
-  // };
+  };
 
   return (
     <div
@@ -64,7 +70,7 @@ const SingleParkCard = (props) => {
             className="hover:bg-orange-300 font-bold hover:text-black px-5 py-3 my-2 
           rounded-md bg-yellow-600 cursor-pointer text-orange-300 
           transition border-2 border-brown duration-200 ml-4"
-          onClick={handleSubmit}
+            onClick={handleSubmit}
           >
             Bookmark
           </button>
@@ -78,6 +84,6 @@ SingleParkCard.propTypes = {
   state: PropTypes.string,
   park: PropTypes.string,
   img: PropTypes.any,
-  id: PropTypes.number
+  id: PropTypes.number,
 };
 export default SingleParkCard;
