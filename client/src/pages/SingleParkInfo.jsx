@@ -4,14 +4,14 @@ import axios from "axios";
 import SingleParkCard from "../components/SingleParkCard";
 
 const SingleParkInfo = () => {
+  
   const params = useParams();
-
-  console.log(params);
   
   const [parks, setParks] = useState([]);
 
   useEffect(() => {
     const fetchPark = async () => {
+      console.log("page");
         try {
           const res = await axios.get(`http://localhost:3000/parks/${params.state.toString()}`);
           setParks(res.data);
@@ -26,7 +26,7 @@ const SingleParkInfo = () => {
     return (
       <div key={parks.park_id}>
         <SingleParkCard id={parks.park_id} park={parks.park_name} 
-      img={parks.park_img} state={parks.state} />
+      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked}/>
       </div>
     )
   });

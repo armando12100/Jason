@@ -3,40 +3,31 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const SingleParkCard = (props) => {
   const { currentUser } = useContext(AuthContext);
 
-  const [bookmark, SetBookmark] = useState({
-    user_id: null,
-    park_id: null,
+  const [values, SetValues] = useState({
+    user_id: currentUser.user_id,
   });
 
-  const navigate = useNavigate();
-
   useEffect(() => {
-    if (currentUser) {
-      SetBookmark({
-        ...bookmark,
+      SetValues({
         user_id: currentUser.user_id,
-        park_id: props.id,
       });
-    } else {
-      alert("not logged in!");
-    }
-  }, [bookmark]);
-
+    }, []);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:3000/bookmarks", bookmark);
-      console.log(bookmark);
-      navigate(`/parks/${props.state}`);
-    } catch (error) {
-      console.log(error);
+    console.log(values);
+      try {
+        await axios.post("http://localhost:3000/bookmarks", values);
+        // navigate(`/parks/${props.state}`);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  };
 
   return (
     <div
@@ -66,14 +57,25 @@ const SingleParkCard = (props) => {
               Get Park Info!
             </button>
           </Link>
-          <button
-            className="hover:bg-orange-300 font-bold hover:text-black px-5 py-3 my-2 
-          rounded-md bg-yellow-600 cursor-pointer text-orange-300 
-          transition border-2 border-brown duration-200 ml-4"
-            onClick={handleSubmit}
-          >
-            Bookmark
-          </button>
+          {props.bookmarked ? (
+            <button
+              className="hover:bg-white font-bold hover:text-green-500 px-5 py-3 my-2 
+        rounded-md bg-green-500 cursor-pointer text-white 
+        transition border-2 border-brown duration-200 ml-4"
+              onClick={handleSubmit}
+            >
+              Bookmarked!
+            </button>
+          ) : (
+            <button
+              className="hover:bg-orange-300 font-bold hover:text-black px-5 py-3 my-2 
+            rounded-md bg-yellow-600 cursor-pointer text-orange-300 
+            transition border-2 border-brown duration-200 ml-4"
+              onClick={handleSubmit}
+            >
+              Bookmark
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -85,5 +87,6 @@ SingleParkCard.propTypes = {
   park: PropTypes.string,
   img: PropTypes.any,
   id: PropTypes.number,
+  bookmarked: PropTypes.number,
 };
 export default SingleParkCard;

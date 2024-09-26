@@ -30,6 +30,8 @@ const MyParks = () => {
           park={parks.park_name}
           img={parks.park_img}
           state={parks.state}
+          id={parks.park_id}
+          bookmarked={parks.bookmarked}
         />
       </div>
     );
