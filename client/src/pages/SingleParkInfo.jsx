@@ -4,7 +4,7 @@ import axios from "axios";
 import SingleParkCard from "../components/SingleParkCard";
 
 const SingleParkInfo = () => {
-  
+
   const params = useParams();
   
   const [parks, setParks] = useState([]);
@@ -26,7 +26,8 @@ const SingleParkInfo = () => {
     return (
       <div key={parks.park_id}>
         <SingleParkCard id={parks.park_id} park={parks.park_name} 
-      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked}/>
+      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked}
+      address={parks.park_address}/>
       </div>
     )
   });

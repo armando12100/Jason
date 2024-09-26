@@ -1,33 +1,36 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 const SingleParkCard = (props) => {
   const { currentUser } = useContext(AuthContext);
 
+  console.log(props);
+
   const [values, SetValues] = useState({
     user_id: currentUser.user_id,
+    bookmark_park_id: props.id,
+    bookmarked: props.bookmarked,
   });
 
-  useEffect(() => {
-      SetValues({
-        user_id: currentUser.user_id,
-      });
-    }, []);
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
-      try {
-        await axios.post("http://localhost:3000/bookmarks", values);
-        // navigate(`/parks/${props.state}`);
-      } catch (error) {
-        console.log(error);
-      }
+    SetValues(prevValues => ({
+      ...prevValues,
+      user_id: currentUser.user_id,
+      bookmark_park_id: props.id,
+      bookmarked: true,
+    }));
+    try {
+      await axios.post("http://localhost:3000/bookmarks", values);
+      // navigate(`/parks/${props.state}`);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
   return (
     <div

@@ -23,8 +23,8 @@ router.get("/", (req,res) => {
 // get request that gets all parks
 router.get("/:state", (req,res) => {
     const state = req.params.state;
-    
-    const q = `SELECT * FROM parks LEFT JOIN bookmarks ON parks.park_id = bookmarks.park_id WHERE state = ? OR bookmarks.bookmarked != true`
+
+    const q = `SELECT * FROM parks LEFT JOIN bookmarks ON parks.park_id = bookmarks.bookmark_park_id WHERE state = ? OR bookmarks.bookmarked != true`
     db.query(q, [state], (err,data) => {
         if (err) return id
         return res.json(data)

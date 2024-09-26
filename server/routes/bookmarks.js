@@ -12,7 +12,7 @@ const db = mysql.createConnection({
 
 // get request that gets all bookmarked parks
 router.get("/:id", (req,res) => {
-    const q = "SELECT * FROM parks JOIN bookmarks ON parks.park_id = bookmarks.park_id AND bookmarks.user_id = ?"
+    const q = "SELECT * FROM parks JOIN bookmarks ON parks.park_id = bookmarks.bookmark_park_id AND bookmarks.user_id = ?"
     
     const id = req.params.id
 
@@ -24,11 +24,11 @@ router.get("/:id", (req,res) => {
 
 // post to bookmarks table
 router.post("/", (req, res) => {
-    const q = "INSERT INTO bookmarks (`user_id`, `park_id`, `bookmarked`) VALUES (?)"
+    const q = "INSERT INTO bookmarks (`user_id`, `bookmark_park_id`, `bookmarked`) VALUES (?)"
 
     const values = [
         req.body.user_id,
-        req.body.park_id,
+        req.body.bookmark_park_id,
         req.body.bookmarked
     ]
     
