@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 const SingleParkCard = (props) => {
   const { currentUser } = useContext(AuthContext);
+
+  // const navigate = useNavigate();
 
   console.log(props);
 
@@ -16,17 +18,32 @@ const SingleParkCard = (props) => {
     bookmarked: props.bookmarked,
   });
 
+  const [clicked, SetClicked] = useState(false);
+
+  // useEffect(() => {
+  //   const bookmark = async () => {
+  //     SetValues((prevValues) => ({
+  //       ...prevValues,
+  //       bookmarked: true,
+  //     }));
+  //   }
+  //   bookmark();
+  // }, [SetValues]);
+
+  useEffect(() => {
+      SetValues((prevValues) => ({
+        ...prevValues,
+        bookmarked: true,
+      }))
+  }, [values, SetValues]);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    SetValues(prevValues => ({
-      ...prevValues,
-      user_id: currentUser.user_id,
-      bookmark_park_id: props.id,
-      bookmarked: true,
-    }));
+    SetClicked(true);
     try {
       await axios.post("http://localhost:3000/bookmarks", values);
-      // navigate(`/parks/${props.state}`);
+      // navigate(`/myparks/${currentUser.user_id}`);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +77,7 @@ const SingleParkCard = (props) => {
               Get Park Info!
             </button>
           </Link>
-          {props.bookmarked ? (
+          {props.bookmarked || clicked ? (
             <button
               className="hover:bg-white font-bold hover:text-green-500 px-5 py-3 my-2 
         rounded-md bg-green-500 cursor-pointer text-white 
