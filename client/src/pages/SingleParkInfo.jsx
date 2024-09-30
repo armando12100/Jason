@@ -11,7 +11,6 @@ const SingleParkInfo = () => {
 
   useEffect(() => {
     const fetchPark = async () => {
-      console.log("page");
         try {
           const res = await axios.get(`http://localhost:3000/parks/${params.state.toString()}`);
           setParks(res.data);

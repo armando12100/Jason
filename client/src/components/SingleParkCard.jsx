@@ -1,16 +1,12 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 const SingleParkCard = (props) => {
   const { currentUser } = useContext(AuthContext);
-
-  // const navigate = useNavigate();
-
-  console.log(props);
 
   const [values, SetValues] = useState({
     user_id: currentUser.user_id,
@@ -18,32 +14,29 @@ const SingleParkCard = (props) => {
     bookmarked: props.bookmarked,
   });
 
+  console.log(values);
+
   const [clicked, SetClicked] = useState(false);
 
-  // useEffect(() => {
-  //   const bookmark = async () => {
-  //     SetValues((prevValues) => ({
-  //       ...prevValues,
-  //       bookmarked: true,
-  //     }));
-  //   }
-  //   bookmark();
-  // }, [SetValues]);
-
-  useEffect(() => {
-      SetValues((prevValues) => ({
-        ...prevValues,
-        bookmarked: true,
-      }))
-  }, [values, SetValues]);
-
+  const handleDelete = async () => {
+    SetClicked((prevClicked) => !prevClicked);
+    try {
+      await axios.delete(
+        `http://localhost:3000/bookmarks/${props.id}/${currentUser.user_id}`,
+        values
+      );
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    SetClicked(true);
+    SetClicked((prevClicked) => !prevClicked);
     try {
+      console.log("bookmarking!");
       await axios.post("http://localhost:3000/bookmarks", values);
-      // navigate(`/myparks/${currentUser.user_id}`);
     } catch (error) {
       console.log(error);
     }
@@ -71,21 +64,32 @@ const SingleParkCard = (props) => {
         <div className="flex justify-center items-center">
           <Link to={`/parks/${props.state}/${props.park}`}>
             <button
-              className="hover:bg-orange-300 font-bold hover:text-black px-5 py-3 my-2 rounded-md
+              className="hover:bg-orange-300 font-bold hover:text-black px-2 py-3 my-2 rounded-md
          bg-yellow-600 cursor-pointer text-orange-300 transition border-2 border-brown duration-200"
             >
-              Get Park Info!
+              Park Info!
             </button>
           </Link>
           {props.bookmarked || clicked ? (
-            <button
-              className="hover:bg-white font-bold hover:text-green-500 px-5 py-3 my-2 
+            <div className="flex">
+              <button
+                className="hover:bg-white font-bold hover:text-green-500 px-2 py-3 my-2 
         rounded-md bg-green-500 cursor-pointer text-white 
         transition border-2 border-brown duration-200 ml-4"
-              onClick={handleSubmit}
-            >
-              Bookmarked!
-            </button>
+                onClick={handleSubmit}
+              >
+                Bookmarked!
+              </button>
+
+              <button
+                className="font-bold hover:text-black px-2 py-3 my-2 
+rounded-md bg-red-600 cursor-pointer text-white 
+transition border-2 border-brown duration-200 ml-4"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            </div>
           ) : (
             <button
               className="hover:bg-orange-300 font-bold hover:text-black px-5 py-3 my-2 

@@ -11,7 +11,7 @@ const db = mysql.createConnection({
 });
 
 // get request that gets all bookmarked parks
-router.get("/:id", (req,res) => {
+router.get("/:id", async (req,res) => {
     const q = "SELECT * FROM parks JOIN bookmarks ON parks.park_id = bookmarks.bookmark_park_id AND bookmarks.user_id = ?"
     
     const id = req.params.id
@@ -23,20 +23,32 @@ router.get("/:id", (req,res) => {
 });
 
 // post to bookmarks table
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const q = "INSERT INTO bookmarks (`user_id`, `bookmark_park_id`, `bookmarked`) VALUES (?)"
 
     const values = [
         req.body.user_id,
         req.body.bookmark_park_id,
-        req.body.bookmarked
+        true
     ]
-    
-    console.log(values);
 
     db.query(q,[values], (err, data) => {
         if (err) return res.json(err);
-        return res.json("Park has been successfully bookmarked!");
+        return res.json("Park has been successfully bookmarked to the database!");
+    });
+ });
+
+ // delete bookmark from bookmarks table
+router.delete("/:park_id/:id", async (req, res) => {
+    const q = "DELETE from bookmarks WHERE user_id = ? AND bookmark_park_id = ?"
+
+    const id = req.params.id
+
+    const park = req.params.park_id
+    
+    db.query(q, [id, park], (err, data) => {
+        if (err) return console.log(err);
+        return res.json("Park has been successfully deleted from the database!");
     });
  });
 
