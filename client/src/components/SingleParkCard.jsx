@@ -6,6 +6,7 @@ import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 const SingleParkCard = (props) => {
+
   const { currentUser } = useContext(AuthContext);
 
   const [values, SetValues] = useState({
@@ -18,18 +19,6 @@ const SingleParkCard = (props) => {
 
   const [clicked, SetClicked] = useState(false);
 
-  const handleDelete = async () => {
-    SetClicked((prevClicked) => !prevClicked);
-    try {
-      await axios.delete(
-        `http://localhost:3000/bookmarks/${props.id}/${currentUser.user_id}`,
-        values
-      );
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,12 +71,11 @@ const SingleParkCard = (props) => {
               </button>
 
               <button
-                className="font-bold hover:text-black px-2 py-3 my-2 
-rounded-md bg-red-600 cursor-pointer text-white 
+                className="font-bold hover:text-yellow-600 px-2 py-3 my-2 
+rounded-md bg-black cursor-pointer text-white 
 transition border-2 border-brown duration-200 ml-4"
-                onClick={handleDelete}
               >
-                Delete
+                <Link to={`/edit/${props.park}/${currentUser.user_id}`}>Edit</Link>
               </button>
             </div>
           ) : (

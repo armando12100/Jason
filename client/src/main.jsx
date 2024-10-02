@@ -11,6 +11,7 @@ import NationalParks from "./pages/NationalParks.jsx";
 import SingleParkInfo from "./pages/SingleParkInfo.jsx";
 import SingleParkPage from "./pages/SingleParkPage.jsx";
 import Register from "./pages/Register.jsx";
+import Edit from "./pages/Edit.jsx";
 import { AuthContextProvider } from "./context/authContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/parks/:state" element={<SingleParkInfo />} />
         <Route path="/parks/:state/:park" element={<SingleParkPage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/edit/:park/:id" element={<Edit />} />
       </Routes>
     </AuthContextProvider>
   </BrowserRouter>

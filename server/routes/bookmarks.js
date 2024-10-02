@@ -53,7 +53,7 @@ router.delete("/:park_id/:id", async (req, res) => {
  });
 
 //  update bookmarked to true or false
- router.put("/:id", (req, res) => {
+ router.put("/park_id/:id", (req, res) => {
     const id = req.params.id;
     // const q =
     //   "UPDATE nationalparks.parks SET `bookmarked` = false WHERE park_id = parks.park_id";
