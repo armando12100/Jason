@@ -91,7 +91,7 @@ const EditParkCard = (props) => {
             {props.visited ? (
               <button
               className="font-bold hover:text-green-400 px-2 py-3 my-2 
-  rounded-md bg-yellow-200 cursor-pointer text-white 
+  rounded-md bg-yellow-200 cursor-pointer text-black 
   transition border-2 border-brown duration-200 ml-4"
               onClick={handleMarkVisited}
             >

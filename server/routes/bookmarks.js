@@ -61,7 +61,7 @@ router.delete("/:park_id/:id", async (req, res) => {
     const park = req.params.park_id
   
     const q =
-    "UPDATE nationalparks.bookmarks SET `visited` = true WHERE bookmarks.user_id = ? AND bookmarks.bookmark_park_id = ?"
+    "UPDATE nationalparks.bookmarks SET `visited` = !`visited` WHERE bookmarks.user_id = ? AND bookmarks.bookmark_park_id = ?"
 
     db.query(q, [id, park], (err, data) => {
       if (err) return console.log(err);
