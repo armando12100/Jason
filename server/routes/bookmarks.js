@@ -24,12 +24,13 @@ router.get("/:id", async (req,res) => {
 
 // post to bookmarks table
 router.post("/", async (req, res) => {
-    const q = "INSERT INTO bookmarks (`user_id`, `bookmark_park_id`, `bookmarked`) VALUES (?)"
+    const q = "INSERT INTO bookmarks (`user_id`, `bookmark_park_id`, `bookmarked`, `visited`) VALUES (?)"
 
     const values = [
         req.body.user_id,
         req.body.bookmark_park_id,
-        true
+        true,
+        false
     ]
 
     db.query(q,[values], (err, data) => {
@@ -53,18 +54,17 @@ router.delete("/:park_id/:id", async (req, res) => {
  });
 
 //  update bookmarked to true or false
- router.put("/park_id/:id", (req, res) => {
+ router.put("/:park_id/:id", (req, res) => {
+    
     const id = req.params.id;
-    // const q =
-    //   "UPDATE nationalparks.parks SET `bookmarked` = false WHERE park_id = parks.park_id";
+
+    const park = req.params.park_id
   
     const q =
-    "UPDATE nationalparks.parks INNER JOIN nationalparks.bookmarks ON parks.park_id = bookmarks.park_id AND bookmarks.user_id = ? SET `bookmarked` = NOT `bookmarked` WHERE bookmarks.user_id = ?"
+    "UPDATE nationalparks.bookmarks SET `visited` = true WHERE bookmarks.user_id = ? AND bookmarks.bookmark_park_id = ?"
 
-    console.log(req.body.bookmarked);
-
-    db.query(q, [id], (err, data) => {
-      if (err) return res.json(err);
+    db.query(q, [id, park], (err, data) => {
+      if (err) return console.log(err);
       return res.json("hmmm");
     });
   });

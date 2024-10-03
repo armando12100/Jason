@@ -10,6 +10,7 @@ const NationalParks = () => {
         state={parks.state}
         numParks={parks.numParks}
         img={parks.img}
+        visited={parks.visited}
       />
     );
   })

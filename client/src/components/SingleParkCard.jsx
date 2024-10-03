@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { useContext, useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import Visited from "../images/visited.png";
 
 const SingleParkCard = (props) => {
 
@@ -13,9 +13,8 @@ const SingleParkCard = (props) => {
     user_id: currentUser.user_id,
     bookmark_park_id: props.id,
     bookmarked: props.bookmarked,
+    visited: props.visited
   });
-
-  console.log(values);
 
   const [clicked, SetClicked] = useState(false);
 
@@ -24,7 +23,6 @@ const SingleParkCard = (props) => {
     e.preventDefault();
     SetClicked((prevClicked) => !prevClicked);
     try {
-      console.log("bookmarking!");
       await axios.post("http://localhost:3000/bookmarks", values);
     } catch (error) {
       console.log(error);
@@ -34,12 +32,17 @@ const SingleParkCard = (props) => {
   return (
     <div
       className="justify-center my-3 w-96 shadow-2xl rounded-lg mt-6 lg:mt-0 mx-4 
-      cursor-pointer pb-6 border-dashed border-2 border-brown"
+      cursor-pointer pb-6 border-dashed border-2 border-brown relative"
     >
       <div
         className="flex flex-col justify-center items-center
             hover:scale-105 transition duration-200 pt-2"
       >
+        {props.visited ? (
+        <img src={Visited} alt="" className="absolute -top-3 left-1/3 z-50" />
+      ) : (
+        <></>
+      )}
         <h1 className="text-center font-bold pb-4">{props.park}</h1>
         <img
           src={props.img}
@@ -100,5 +103,6 @@ SingleParkCard.propTypes = {
   img: PropTypes.any,
   id: PropTypes.number,
   bookmarked: PropTypes.number,
+  visited: PropTypes.number
 };
 export default SingleParkCard;

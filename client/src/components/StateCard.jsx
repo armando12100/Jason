@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Visited from "../images/visited.png";
 
 const StateCard = (props) => {
 
@@ -10,6 +11,11 @@ const StateCard = (props) => {
           className="flex flex-col justify-center items-center
             hover:scale-105 transition duration-200 pt-2"
         >
+          {props.visited ? (
+        <img src={Visited} alt="" className="absolute -top-3 left-1/3 z-50" />
+      ) : (
+        <></>
+      )}
           <h1 className="text-center font-bold pb-4">{props.state}</h1>
           <img
             src={props.img}
@@ -45,6 +51,7 @@ StateCard.propTypes = {
   img: PropTypes.any,
   state: PropTypes.string,
   numParks: PropTypes.number,
+  visited: PropTypes.number
 };
 
 export default StateCard;

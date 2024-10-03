@@ -32,6 +32,7 @@ const Edit = () => {
           state={parks.state}
           id={parks.park_id}
           bookmarked={parks.bookmarked}
+          visited={parks.visited}
         />
       </div>
     );

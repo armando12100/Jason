@@ -23,6 +23,7 @@ const MyParks = () => {
   }, [currentUser.user_id]);
 
   const parkCards = parks.map((parks) => {
+    console.log(parks);
     return (
       <div key={parks.park_id}>
         <SingleParkCard
@@ -32,6 +33,7 @@ const MyParks = () => {
           state={parks.state}
           id={parks.park_id}
           bookmarked={parks.bookmarked}
+          visited={parks.visited}
         />
       </div>
     );
