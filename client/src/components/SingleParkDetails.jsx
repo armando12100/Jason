@@ -1,14 +1,47 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import axios from "axios";
+import ReviewCard from "./ReviewCard";
 
 const SingleParkDetails = (props) => {
+  const { currentUser } = useContext(AuthContext);
+
+  const [parks, setParks] = useState([]);
+
+  useEffect(() => {
+    const fetchPark = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:3000/comments/${currentUser.user_id}}`
+        );
+        setParks(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchPark();
+  }, [currentUser.user_id]);
+
+  const reviewCard = parks.map((parks) => {
+    return (
+      <div key={parks.park_id}>
+        <ReviewCard id={parks.park_id} park={parks.park_name} 
+      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked}
+      address={parks.park_address} visited={parks.visited} content={parks.content}/>
+      </div>
+    )
+  });
+
+
   return (
     <div className="text-black">
       <div className="flex">
         <div className=" w-1/2 mt-5 flex flex-col justify-center items-center">
           <img src={props.img} alt="" className=" w-10/12 h-72" />
 
-          <div  className="flex">
+          <div className="flex">
             <Link to={props.directions} className="mr-8">
               <button
                 className="bg-zinc-400 font-bold text-white px-5 py-3 my-2 rounded-md
@@ -52,6 +85,18 @@ const SingleParkDetails = (props) => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="mt-5 ml-2">
+
+        <div>
+          <h1 className="font-bold text-xl">User Reviews Of Park</h1>
+        </div>
+
+        <div>
+          {reviewCard}
+        </div>
+
       </div>
     </div>
   );

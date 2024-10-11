@@ -24,10 +24,11 @@ router.post("/register", (req, res) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.user_password, salt);
         
-        const q = "INSERT INTO users(`user_email`, `user_password`) VALUES (?)"
+        const q = "INSERT INTO users(`user_email`, `user_password`, `username`) VALUES (?)"
         const values = [
             req.body.user_email,
-            hash
+            hash,
+            req.body.username
         ]
 
         db.query(q, [values], (err, data) => {

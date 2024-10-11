@@ -12,11 +12,9 @@ const db = mysql.createConnection({
 
 // get request that gets all comments for current user
 router.get("/:id", async (req,res) => {
-    const q = "SELECT * FROM parks JOIN comments ON parks.park_id = comments.comment_park_id AND comments.comment_user_id = ?"
+    const q = "SELECT * FROM parks JOIN comments ON parks.park_id = comments.comment_park_id"
     
-    const id = req.params.id
-
-    db.query(q, [id], (err,data) => {
+    db.query(q, (err,data) => {
         if (err) return (err)
         return res.json(data)
     })

@@ -16,6 +16,8 @@ const SingleParkCard = (props) => {
     visited: props.visited
   });
 
+  console.log(values);
+
   const [clicked, SetClicked] = useState(false);
 
 
@@ -38,7 +40,7 @@ const SingleParkCard = (props) => {
         className="flex flex-col justify-center items-center
             hover:scale-105 transition duration-200 pt-2"
       >
-        {props.visited ? (
+        {props.visited && props.userId == currentUser.userId ? (
         <img src={Visited} alt="" className="absolute -top-3 left-1/3 z-50" />
       ) : (
         <></>
@@ -62,7 +64,7 @@ const SingleParkCard = (props) => {
               Park Info!
             </button>
           </Link>
-          {props.bookmarked || clicked ? (
+          {props.bookmarked && props.userId == currentUser.userId || clicked ? (
             <div className="flex">
               <button
                 className="hover:bg-white font-bold hover:text-green-500 px-2 py-3 my-2 
@@ -103,6 +105,7 @@ SingleParkCard.propTypes = {
   img: PropTypes.any,
   id: PropTypes.number,
   bookmarked: PropTypes.number,
-  visited: PropTypes.number
+  visited: PropTypes.number,
+  userId: PropTypes.number
 };
 export default SingleParkCard;

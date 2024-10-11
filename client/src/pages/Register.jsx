@@ -12,6 +12,7 @@ const Register = () => {
     user_id: null,
     user_email: "",
     user_password: "",
+    username: ""
   });
 
   const [err, setError] = useState(null);
@@ -69,6 +70,13 @@ const Register = () => {
                 type="text"
                 name="user_password"
                 placeholder="password"
+                onChange={handleChange}
+                className=" shadow-md mt-2 pl-4"
+              />
+              <input
+                type="text"
+                name="username"
+                placeholder="username"
                 onChange={handleChange}
                 className=" shadow-md mt-2 mb-5 pl-4"
               />

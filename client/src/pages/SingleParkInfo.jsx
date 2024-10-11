@@ -26,7 +26,7 @@ const SingleParkInfo = () => {
       <div key={parks.park_id}>
         <SingleParkCard id={parks.park_id} park={parks.park_name} 
       img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked}
-      address={parks.park_address} visited={parks.visited}/>
+      address={parks.park_address} visited={parks.visited} userId={parks.user_id}/>
       </div>
     )
   });
