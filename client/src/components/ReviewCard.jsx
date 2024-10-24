@@ -1,20 +1,34 @@
 import PropTypes from "prop-types";
+import profile from "../images/people.png";
 
 const ReviewCard = (props) => {
   return (
-    <div>
-        <div>
-        <h1>ReviewCard</h1>
-        </div>
-        <div>
-            {props.content}
-        </div>
+    <div className="mt-3 pl-2 pb-5 shadow-xl">
+
+      <div className="flex">
+        <img src={profile} alt="" width={32} className="mr-3" />
+        <h1 className="text-sm font-bold text-gray-500">{props.username}</h1>
+      </div>
+
+      <div className="flex mt-2">
+        <h2 className="mr-4">{props.rating}</h2>
+        <h2 className="font-bold italic text-md">Title of Review hehe</h2>
+      </div>
+
+      <div>
+        <h3 className="text-sm font-bold text-gray-500">Reviewed on {props.timestamp}</h3>
+      </div>
+
+      <div className="mt-3">{props.content}</div>
     </div>
-  )
+  );
 };
 
 ReviewCard.propTypes = {
-    content: PropTypes.string
-  };
+  username: PropTypes.string,
+  rating: PropTypes.number,
+  content: PropTypes.string,
+  timestamp: PropTypes.any
+};
 
-export default ReviewCard
+export default ReviewCard;

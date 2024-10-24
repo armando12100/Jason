@@ -27,9 +27,9 @@ const SingleParkDetails = (props) => {
   const reviewCard = parks.map((parks) => {
     return (
       <div key={parks.park_id}>
-        <ReviewCard id={parks.park_id} park={parks.park_name} 
-      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked}
-      address={parks.park_address} visited={parks.visited} content={parks.content}/>
+        <ReviewCard id={parks.park_id} park={parks.park_name} rating={parks.park_rating} timestamp={parks.timestamp}
+      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked} title={parks.review_title}
+      address={parks.park_address} visited={parks.visited} content={parks.content} username={parks.username}/>
       </div>
     )
   });
@@ -87,7 +87,7 @@ const SingleParkDetails = (props) => {
         </div>
       </div>
 
-      <div className="mt-5 ml-2">
+      <div className="mt-8 ml-20">
 
         <div>
           <h1 className="font-bold text-xl">User Reviews Of Park</h1>
