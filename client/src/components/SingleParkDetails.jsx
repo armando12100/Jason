@@ -6,6 +6,7 @@ import axios from "axios";
 import ReviewCard from "./ReviewCard";
 
 const SingleParkDetails = (props) => {
+
   const { currentUser } = useContext(AuthContext);
 
   const [parks, setParks] = useState([]);
@@ -60,6 +61,17 @@ const SingleParkDetails = (props) => {
                 // onClick={GetInfo}s
               >
                 Get Park Info!
+              </button>
+            </Link>
+          </div>
+          <div>
+          <Link to={`/review/${currentUser.user_id}`}>
+              <button
+                className="bg-zinc-400 font-bold text-white px-5 py-3 my-2 rounded-md
+             hover:bg-transparent cursor-pointer hover:text-black transition border-2 hover:border-zinc-400 duration-200"
+                // onClick={GetInfo}s
+              >
+                Leave A Park Review!
               </button>
             </Link>
           </div>

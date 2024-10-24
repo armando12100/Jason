@@ -3,11 +3,11 @@ import profile from "../images/people.png";
 
 const ReviewCard = (props) => {
   return (
-    <div className="mt-3 pl-2 pb-5 shadow-xl">
+    <div className="mt-3 pl-2 py-5 shadow-xl">
 
       <div className="flex">
         <img src={profile} alt="" width={32} className="mr-3" />
-        <h1 className="text-sm font-bold text-gray-500">{props.username}</h1>
+        <h1 className="text-sm font-bold text-gray-500">{props.username}</h1>s
       </div>
 
       <div className="flex mt-2">
