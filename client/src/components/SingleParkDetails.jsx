@@ -29,12 +29,11 @@ const SingleParkDetails = (props) => {
     return (
       <div key={parks.park_id}>
         <ReviewCard id={parks.park_id} park={parks.park_name} rating={parks.park_rating} timestamp={parks.timestamp}
-      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked} title={parks.review_title}
+      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked} title={parks.title}
       address={parks.park_address} visited={parks.visited} content={parks.content} username={parks.username}/>
       </div>
     )
   });
-
 
   return (
     <div className="text-black">
@@ -65,7 +64,7 @@ const SingleParkDetails = (props) => {
             </Link>
           </div>
           <div>
-          <Link to={`/review/${currentUser.user_id}`}>
+          <Link to={`/review/${props.state}/${props.park}/${props.id}/${currentUser.user_id}`}>
               <button
                 className="bg-zinc-400 font-bold text-white px-5 py-3 my-2 rounded-md
              hover:bg-transparent cursor-pointer hover:text-black transition border-2 hover:border-zinc-400 duration-200"
@@ -116,6 +115,7 @@ const SingleParkDetails = (props) => {
 
 SingleParkDetails.propTypes = {
   park: PropTypes.string,
+  id: PropTypes.number,
   img: PropTypes.any,
   state: PropTypes.string,
   description: PropTypes.string,

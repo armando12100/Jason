@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/parks/:state/:park" element={<SingleParkPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/edit/:park/:id" element={<Edit />} />
-        <Route path="/review/:id" element={<Review />} />
+        <Route path="/review/:state/:park/:parkid/:id" element={<Review />} />
       </Routes>
     </AuthContextProvider>
   </BrowserRouter>

@@ -27,7 +27,7 @@ const SingleParkPage = () => {
       <SingleParkDetails key={parks.id} park={parks.park_name} 
       img={parks.park_img} state={parks.state} description={parks.park_description}
       directions={parks.park_maps_directions} rating={parks.park_rating}
-      info={parks.park_info_link} address={parks.park_address}
+      info={parks.park_info_link} address={parks.park_address} id={parks.park_id}
       address2={parks.park_address_2} address3={parks.park_address_3} />
     );
   });

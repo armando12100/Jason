@@ -24,13 +24,15 @@ router.get("/:id", async (req,res) => {
 
 // post to comments table
 router.post("/", async (req, res) => {
-    const q = "INSERT INTO comments (`comment_user_id`, `comment_park_id`, `content`, `timestamp`) VALUES (?)"
+    const q = "INSERT INTO comments (`comment_user_id`, `comment_park_id`, `content`, `timestamp`, `title`, `rating`) VALUES (?)"
 
     const values = [
         req.body.comment_user_id,
         req.body.comment_park_id,
         req.body.content,
-        req.body.timestamp
+        req.body.timestamp,
+        req.body.title,
+        req.body.rating
     ]
 
     console.log(values);
