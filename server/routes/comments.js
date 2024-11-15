@@ -11,12 +11,23 @@ const db = mysql.createConnection({
 });
 
 // get request that gets all comments for current user
-router.get("/:id", async (req,res) => {
-    // const q = "SELECT * FROM parks JOIN comments ON parks.park_id = comments.comment_park_id"
+// router.get("/:id", async (req,res) => {
 
-    const q = "SELECT username, user_id, comments.*, parks.park_id, parks.park_rating FROM parks JOIN comments ON parks.park_id = comment_park_id LEFT JOIN users ON user_id = comment_user_id;"
+//     const q = "SELECT username, user_id, comments.*, parks.park_id, parks.park_rating FROM parks JOIN comments ON parks.park_id = comment_park_id LEFT JOIN users ON user_id = comment_user_id;"
     
-    db.query(q, (err,data) => {
+//     db.query(q, (err,data) => {
+//         if (err) return (err)
+//         return res.json(data)
+//     })
+// });
+
+// get request that gets the curret rating for the current park
+router.get("/:id/:parkId", async (req,res) => {
+
+    const parkId = req.params.parkId
+    const q = "SELECT parks.*, comments.* FROM parks JOIN comments ON comment_park_id = ?;"
+    
+    db.query(q, [parkId], (err,data) => {
         if (err) return (err)
         return res.json(data)
     })

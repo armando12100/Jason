@@ -22,24 +22,15 @@ const Review = () => {
     content: content,
     timestamp: timestamp,
     title: title,
-    rating: rating,
+    rating: rating
   });
 
   const handleRatingChange = (e) => {
     console.log(rating);
-    setInputs((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }));
-    // setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setInputs((prev) => ({ ...prev, rating: parseInt(e.target.value) }));
   };
 
-  const handleContentChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleTitleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleTimeStampChange = (e) => {
+  const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -125,7 +116,7 @@ const Review = () => {
               type="text"
               name="title"
               placeholder="Title Review"
-              onChange={handleTitleChange}
+              onChange={handleChange}
               className=" shadow-md mt-2 pl-4"
             />
           </div>
@@ -139,7 +130,7 @@ const Review = () => {
               type="text"
               name="content"
               placeholder="Write Review"
-              onChange={handleContentChange}
+              onChange={handleChange}
               className=" shadow-md mt-2 pl-4"
             />
           </div>

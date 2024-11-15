@@ -15,25 +15,27 @@ const SingleParkDetails = (props) => {
     const fetchPark = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/comments/${currentUser.user_id}}`
+          `http://localhost:3000/comments/${currentUser.user_id}}/${props.id}`
         );
+        console.log(res);
         setParks(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchPark();
-  }, [currentUser.user_id]);
+  }, [currentUser.user_id, props.id]);
 
   const reviewCard = parks.map((parks) => {
     return (
       <div key={parks.park_id}>
-        <ReviewCard id={parks.park_id} park={parks.park_name} rating={parks.park_rating} timestamp={parks.timestamp}
-      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked} title={parks.title}
-      address={parks.park_address} visited={parks.visited} content={parks.content} username={parks.username}/>
+        <ReviewCard id={parks.park_id} park={parks.park_name} rating={parks.rating} timestamp={parks.timestamp}
+      img={parks.park_img} state={parks.state} bookmarked={parks.bookmarked} title={parks.title} parkRating={parks.park_rating}
+      address={parks.park_address} visited={parks.visited} content={parks.content} username={parks.username} commentId={parks.comment_park_id}/>
       </div>
     )
   });
+
 
   return (
     <div className="text-black">
@@ -82,7 +84,7 @@ const SingleParkDetails = (props) => {
           <div className="flex justify-evenly w-full mt-5">
             <div>
               <p>
-                <span className="font-bold">Park Rating:</span> {props.rating}
+                <span className="font-bold">Park Rating:</span> {props.parkRating}
               </p>
             </div>
 
@@ -104,7 +106,7 @@ const SingleParkDetails = (props) => {
           <h1 className="font-bold text-xl">User Reviews Of Park</h1>
         </div>
 
-        <div>
+        <div key={props.id}>
           {reviewCard}
         </div>
 
@@ -125,6 +127,8 @@ SingleParkDetails.propTypes = {
   address: PropTypes.string,
   address2: PropTypes.string,
   address3: PropTypes.string,
+  commentId: PropTypes.number,
+  parkRating: PropTypes.number,
 };
 
 export default SingleParkDetails;
